@@ -1,0 +1,3 @@
+{
+  "*.tsx?(x)": ["stylelint --fix", "prettier --write"]
+}
