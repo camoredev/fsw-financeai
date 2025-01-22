@@ -47,6 +47,7 @@ import {
 
 //import calendar
 import DatePicker from "./ui/date-picker";
+import AddTransaction from "../_actions/add-transaction";
 
 type FormSchema = z.infer<typeof formSchema>;
 
@@ -87,8 +88,15 @@ export default function AddTransactionButton() {
     },
   });
 
-  const onSubmit = (date: FormSchema) => {
-    console.log(date);
+  const onSubmit = async (data: FormSchema) => {
+    console.log("entrou");
+    try {
+      console.log({ data });
+      await AddTransaction(data);
+      form.reset();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -133,7 +141,15 @@ export default function AddTransactionButton() {
                 <FormItem>
                   <FormLabel>Valor</FormLabel>
                   <FormControl>
-                    <MoneyInput placeholder="digite o nome..." {...field} />
+                    <MoneyInput
+                      placeholder="digite o valor..."
+                      value={field.value}
+                      onValueChange={({ floatValue }) =>
+                        field.onChange(floatValue)
+                      }
+                      onBlur={field.onBlur}
+                      disabled={field.disabled}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -232,16 +248,16 @@ export default function AddTransactionButton() {
                 </FormItem>
               )}
             />
+            <DialogFooter>
+              <DialogClose asChild>
+                <Button type="button" variant={"outline"}>
+                  Cancelar
+                </Button>
+              </DialogClose>
+              <Button type="submit">Adicionar</Button>
+            </DialogFooter>
           </form>
         </Form>
-        <DialogFooter>
-          <DialogClose asChild>
-            <Button type="button" variant={"outline"}>
-              Cancelar
-            </Button>
-          </DialogClose>
-          <Button type="submit">Adicionar</Button>
-        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
