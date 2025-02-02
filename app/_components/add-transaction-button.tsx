@@ -7,7 +7,7 @@ import { useState } from "react";
 import { Button } from "./ui/button";
 
 export default function AddTransactionButton() {
-  const [dialogIsOpen, setDialogIsOpen] = useState<boolean>(false);
+  const [dialogIsOpen, setDialogIsOpen] = useState(false);
 
   return (
     <>

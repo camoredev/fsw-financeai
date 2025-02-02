@@ -1,6 +1,5 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
 import { Button } from "./ui/button";
 import {
   Dialog,
@@ -17,7 +16,6 @@ import {
   TransactionPaymentMethod,
   TransactionType,
 } from "@prisma/client";
-
 import {
   Form,
   FormControl,
@@ -41,12 +39,15 @@ import {
   TRANSACTION_PAYMENT_METHOD_OPTIONS,
   TRANSACTION_TYPE_OPTIONS,
 } from "../_constants/transactions";
-
-//import calendar
 import DatePicker from "./ui/date-picker";
-import UpsertTransaction from "../_actions/add-transaction";
+import UpsertTransaction from "../_actions/upsert-transaction";
 
-type FormSchema = z.infer<typeof formSchema>;
+interface UpsertTransactionDialogProps {
+  isOpen: boolean;
+  defaultValues?: FormSchema;
+  transactionId?: string;
+  setIsOpen: (isOpen: boolean) => void;
+}
 
 const formSchema = z.object({
   name: z.string().trim().min(1, {
@@ -73,18 +74,13 @@ const formSchema = z.object({
   }),
 });
 
-interface UpsertTransactionDialogProps {
-  isOpen: boolean;
-  defaultValues?: FormSchema;
-  transactionId?: string;
-  setIsOpen: (isOpen: boolean) => void;
-}
+type FormSchema = z.infer<typeof formSchema>;
 
 export default function UpsertTransactionDialog({
   isOpen,
-  setIsOpen,
   defaultValues,
   transactionId,
+  setIsOpen,
 }: UpsertTransactionDialogProps) {
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),

@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/app/_components/ui/button";
 import UpsertTransactionDialog from "@/app/_components/upset-transaction-dialog";
 import { Transaction } from "@prisma/client";
