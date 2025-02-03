@@ -165,10 +165,13 @@ export default function UpsertTransactionDialog({
             <FormField
               control={form.control}
               name="type"
-              render={() => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Tipo da transação</FormLabel>
-                  <Select>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Selecione o tipo..." />
@@ -192,10 +195,13 @@ export default function UpsertTransactionDialog({
             <FormField
               control={form.control}
               name="paymentMethod"
-              render={() => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Método de pagamento</FormLabel>
-                  <Select>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Método de pagamento..." />
@@ -219,10 +225,13 @@ export default function UpsertTransactionDialog({
             <FormField
               control={form.control}
               name="category"
-              render={() => (
+              render={({ field }) => (
                 <FormItem>
                   <FormLabel>Categoria</FormLabel>
-                  <Select>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Categoria..." />
