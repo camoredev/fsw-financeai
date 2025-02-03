@@ -24,10 +24,10 @@ export default async function SummaryCards({
   expensesTotal,
   depositsTotal,
 }: SummaryCardsProps) {
-  console.log(balance);
+  console.log("Investidos: ", investmentsTotal);
 
   return (
-    <div className="space-y-6 px-4 py-6">
+    <div className="space-y-6">
       <Card className="bg-green-500 bg-opacity-[3%]">
         <CardHeader className="flex flex-row items-center gap-2">
           <WalletIcon size={16} />
