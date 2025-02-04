@@ -96,17 +96,17 @@ export default function TransactionsPieChats({
         </ChartContainer>
         <div className="space-y-3 px-10">
           <PercentageItem
-            icon={<TrendingUpIcon size={16} className="text-primary" />}
+            icon={<TrendingUpIcon size={20} className="text-primary" />}
             title="Receita"
             value={typesPercentage[TransactionType.DEPOSIT]}
           />
           <PercentageItem
-            icon={<TrendingDownIcon size={16} className="text-red-500" />}
+            icon={<TrendingDownIcon size={20} className="text-red-500" />}
             title="Despesas"
             value={typesPercentage[TransactionType.EXPENSE]}
           />
           <PercentageItem
-            icon={<PiggyBankIcon size={16} />}
+            icon={<PiggyBankIcon size={20} />}
             title="Investido"
             value={typesPercentage[TransactionType.INVESTMENT]}
           />

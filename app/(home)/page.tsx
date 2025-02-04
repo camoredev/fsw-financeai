@@ -28,36 +28,40 @@ export default async function Home({ searchParams: { month } }: HomeProps) {
   const pieChartData = await getDashboard(JSON.parse(JSON.stringify(month)));
   console.log("data", pieChartData);
   return (
-    <div className="flex flex-col">
+    <>
       <Navbar />
-      <div className="flex w-full flex-row justify-between px-6 py-6">
-        <h1>Dashboard</h1>
-        <h1></h1>
-        <TimeSelect />
-      </div>
-      <main className="grid grid-cols-[2fr_1fr] gap-4 px-3">
-        <div className="flex flex-col gap-4">
-          <div>
-            <SummaryCards month={month} {...pieChartData} />
-          </div>
+      <div className="flex flex-col overflow-hidden">
+        <div className="flex w-full flex-row justify-between px-6 py-6">
+          <h1>Dashboard</h1>
+          <h1></h1>
+          <TimeSelect />
+        </div>
+        <main className="grid grid-cols-[2fr_1fr] gap-4 overflow-hidden px-3">
+          <div className="flex flex-col gap-4 overflow-hidden">
+            <div>
+              <SummaryCards month={month} {...pieChartData} />
+            </div>
 
-          <div className="grid grid-cols-[1fr_1fr] gap-2">
-            <TransactionsPieChats {...pieChartData} />
-            <ExpensesPerCategory
-              expensesPerCategory={pieChartData.totalExpensePerCategory}
+            <div className="grid grid-cols-[1fr_1fr] gap-2 overflow-hidden">
+              <TransactionsPieChats {...pieChartData} />
+              <ExpensesPerCategory
+                expensesPerCategory={pieChartData.totalExpensePerCategory}
+              />
+            </div>
+          </div>
+          <aside className="flex flex-col overflow-hidden">
+            <LastTransactions
+              lastTransactions={pieChartData.LastTransactions}
             />
+          </aside>
+        </main>
+        {/* 
+        <footer className="flex items-center justify-center overflow-hidden py-6">
+          <div className="text-sm text-muted-foreground">
+            © 2025 Finance AI from Camore
           </div>
-        </div>
-        <aside className="flex flex-col">
-          <LastTransactions lastTransactions={pieChartData.LastTransactions} />
-        </aside>
-      </main>
-
-      <footer className="flex items-center justify-center py-6">
-        <div className="text-sm text-muted-foreground">
-          © 2025 Finance AI from Camore
-        </div>
-      </footer>
-    </div>
+        </footer> */}
+      </div>
+    </>
   );
 }
